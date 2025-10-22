@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { ShellComponent } from './shell/shell.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  imports: [ShellComponent, RouterOutlet],
 })
-export class App {
-  protected readonly title = signal('note-keeper');
-}
+export class App {}
