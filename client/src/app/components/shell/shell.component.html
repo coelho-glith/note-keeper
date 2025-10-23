@@ -7,7 +7,15 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar class="justify-content-center mt-2"
+      ><a href="/" class="brand"
+        ><img
+          class="brand_logo"
+          src="/img/logo-zerathen.png"
+          alt="logo-tipo-NoteKeeper Zerathen"
+          decoding="async"
+          loading="eager" /></a
+    ></mat-toolbar>
     <mat-nav-list>
       @for (item of itemsNavbar; track item.name) {
       <a mat-list-item [routerLink]="item.route">
@@ -24,9 +32,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-      <span>NoteKeeper Zerathen</span>
+      <span class="gradient-title">NoteKeeper Zerathen</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
-    <ng-component></ng-component>
+    <div class="container-fluid py-3">
+      <ng-component></ng-component>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

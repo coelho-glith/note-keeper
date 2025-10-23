@@ -15,6 +15,19 @@ html {
       density: 0,
     )
   );
+
+  @include mat.list-overrides(
+    (
+      list-item-label-text-color: rgb(177, 0, 231),
+      list-item-hover-label-text-color: rgb(209, 1, 147),
+      list-item-leading-icon-color: rgb(152, 0, 240),
+      list-item-hover-leading-icon-color: rgb(209, 1, 147),
+      list-item-hover-state-layer-color: rgb(0, 238, 255),
+      list-item-focus-state-layer-color: rgb(94, 0, 182),
+      list-item-focus-state-layer-opacity: 30%,
+      list-item-focus-label-text-color: rgb(255, 161, 219),
+    )
+  );
 }
 
 body {
@@ -42,4 +55,54 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.app-banner-principal {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+      to right,
+      rgba(109, 43, 194, 0.95) 50%,
+      rgba(214, 214, 214, 0.137) 100%
+    ),
+    url('/img/principal-banner.png');
+}
+
+.app-container-principal {
+  min-height: 360px;
+  padding-top: 6rem;
+}
+
+.gradient-title {
+  font-size: clamp(1.5rem, 2.2vw + 0.5rem, 0.25rem);
+  line-height: 1.1;
+
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.gradient-title,
+.gradient-title:hover,
+.gradient-title:focus {
+  display: inline-block;
+  background-image: radial-gradient(circle, #de00b7, #c100bd, #9f00c4, #7100cb, #1200d1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+// logo na sidebar
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand_logo {
+  width: 75px;
+  height: 75px;
+  flex: 0 0 auto;
+  vertical-align: middle;
 }
