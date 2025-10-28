@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -11,6 +12,11 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./components/home/home').then((c) => c.Inicio),
   },
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./components/categories/category.routes').then((r) => r.categoriesRoutes),
+  },
 ];
 
 export const appConfig: ApplicationConfig = {
@@ -18,5 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
+
+    provideHttpClient(),
   ],
 };
