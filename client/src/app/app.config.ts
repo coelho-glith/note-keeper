@@ -13,9 +13,9 @@ export const routes: Routes = [
     loadComponent: () => import('./components/home/home').then((c) => c.Inicio),
   },
   {
-    path: 'categories',
+    path: 'categorias',
     loadChildren: () =>
-      import('./components/categories/category.routes').then((r) => r.categoriesRoutes),
+      import('./components/categorias/categoria.routes').then((r) => r.categoriasRoutes),
   },
 ];
 
