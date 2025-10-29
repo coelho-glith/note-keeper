@@ -8,7 +8,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { EditarCategoriaModel, EditarCategoriaResponseModel } from '../categoria.models';
+import {
+  DetalhesCategoriaModel,
+  EditarCategoriaModel,
+  EditarCategoriaResponseModel,
+} from '../categoria.models';
 import { filter, map, Observer, shareReplay, switchMap, take, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -40,10 +44,10 @@ export class EditarCategoria {
   get titulo() {
     return this.categoriaForm.get('titulo');
   }
-  protected readonly categoria$ = this.route.paramMap.pipe(
-    filter((params) => params.has('id')),
-    map((params) => params.get('id')!),
-    switchMap((id) => this.categoriaService.selecionarPorId(id)),
+
+  protected readonly categoria$ = this.route.data.pipe(
+    filter((data) => data['categoria']),
+    map((data) => data['categoria'] as DetalhesCategoriaModel),
     tap((categoria) => this.categoriaForm.patchValue(categoria)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
