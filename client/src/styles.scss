@@ -28,6 +28,34 @@ html {
       list-item-focus-label-text-color: rgb(255, 161, 219),
     )
   );
+
+  .notificacao-sucesso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-primary),
+      )
+    );
+  }
+
+  .notificacao-aviso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-primary),
+        container-color: var(--mat-sys-surface),
+        supporting-text-color: var(--mat-sys-on-surface),
+      )
+    );
+  }
+
+  .notificacao-erro {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-error),
+      )
+    );
+  }
 }
 
 body {

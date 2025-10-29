@@ -5,6 +5,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
+import { provideNotifications } from './components/shell/notificacao/notificacao.provider';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-
     provideHttpClient(),
+    provideNotifications(),
   ],
 };
