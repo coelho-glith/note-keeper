@@ -29,8 +29,8 @@ import { NotificacaoService } from '../../shell/notificacao/notificacao.service'
 })
 export class CadastrarCategoria {
   protected readonly formBuilder = inject(FormBuilder);
-  protected readonly categoriaService = inject(CategoriaService);
   protected readonly router = inject(Router);
+  protected readonly categoriaService = inject(CategoriaService);
   protected readonly notificacaoService = inject(NotificacaoService);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({

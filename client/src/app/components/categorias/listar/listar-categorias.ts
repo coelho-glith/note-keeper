@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { CategoriaService } from '../categoria.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-listar-categorias',
@@ -15,5 +16,5 @@ import { CategoriaService } from '../categoria.service';
 export class ListarCategorias {
   protected readonly categoriaService = inject(CategoriaService);
 
-  protected readonly categorias$ = this.categoriaService.selecionarTodas();
+  protected readonly categorias$ = this.categoriaService.selecionarTodas().pipe(delay(3000));
 }
