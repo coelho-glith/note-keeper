@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using NoteKeeper.WebApi.Domain;
+using NoteKeeper.WebApi.Domain.Auth;
 using NoteKeeper.WebApi.Orm;
 using NoteKeeper.WebApi.Services.Categorias;
 using System.Collections.Immutable;
@@ -10,6 +11,7 @@ namespace NoteKeeper.WebApi.Services.Notas;
 
 public class NotaAppService(
     AppDbContext dbContext,
+    ITenantProvider tenantProvider,
     IValidator<BaseNotaCommand> validator,
     ILogger<NotaAppService> logger
 )
@@ -34,6 +36,7 @@ public class NotaAppService(
             return Result.Fail(ResultadosErro.RegistroDuplicadoErro($"Já existe uma nota com o título \"{command.Titulo}\""));
 
         var nota = new Nota(command.Titulo, command.Conteudo, command.CategoriaId);
+        nota.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
 
         try
         {
@@ -86,10 +89,12 @@ public class NotaAppService(
         try
         {
             notaSelecionada.Titulo = command.Titulo;
+            notaSelecionada.Conteudo = command.Conteudo;
+            notaSelecionada.CategoriaId = command.CategoriaId;
 
             await dbContext.SaveChangesAsync(cancellationToken);
 
-            var result = new EditarNotaResult(notaSelecionada.Titulo, notaSelecionada.Conteudo, notaSelecionada.Categoria!.Titulo);
+            var result = new EditarNotaResult(notaSelecionada.Titulo, notaSelecionada.Conteudo, notaSelecionada.CategoriaId);
 
             return Result.Ok(result);
         }

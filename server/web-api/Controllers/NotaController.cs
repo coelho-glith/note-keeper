@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NoteKeeper.WebApi.Models;
 using NoteKeeper.WebApi.Services.Notas;
@@ -6,6 +7,7 @@ using NoteKeeper.WebApi.Services.Notas;
 namespace NoteKeeper.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("notas")]
 public class NotaController(NotaAppService notaService) : Controller
 {
@@ -48,7 +50,7 @@ public class NotaController(NotaAppService notaService) : Controller
         if (result.IsFailed)
             return BadRequest();
 
-        var response = new EditarNotaResponse(result.Value.Titulo, result.Value.Conteudo, result.Value.Categoria);
+        var response = new EditarNotaResponse(result.Value.Titulo, result.Value.Conteudo, result.Value.CategoriaId);
 
         return Ok(response);
     }
